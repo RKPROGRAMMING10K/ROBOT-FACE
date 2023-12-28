@@ -1,0 +1,214 @@
+#VRML_SIM R2022a utf8
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.11803192711693627 -0.22625587428694838 -0.9668902437876343 0.9895765954624257
+  position -1.4573189760809693 2.2362615607016667 -0.12003004093312276
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  floorSize 3 3
+  wallThickness 0.04
+  wallHeight 0.2
+}
+DEF BOX Transform {
+  translation 0 0 0.15
+  rotation 0.19611613513818407 0.2965322080397677 0.9346695197413477 -1.3090003061004252
+  children [
+    Shape {
+      appearance OsbWood {
+      }
+      geometry DEF box Box {
+        size 0.8 0.2 0.02
+      }
+    }
+  ]
+  translationStep 0.04
+}
+Robot {
+  translation -0.06 0.7 0.04
+  children [
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 1 1 0
+        anchor 0 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "right wheel motor"
+          consumptionFactor 70
+        }
+        PositionSensor {
+          name "right wheel sensor"
+        }
+      ]
+      endPoint Solid {
+        rotation 0 1 0 0
+        children [
+          DEF WHEEL Transform {
+            rotation 0.577883556445323 0.5770834407562329 -0.5770834407562329 -2.09
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 1 0 0
+                  roughness 1
+                  metalness 0
+                }
+                geometry Cylinder {
+                  height 0.01
+                  radius 0.025
+                }
+              }
+            ]
+          }
+        ]
+        name "left wheel(1)"
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor 0 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "left wheel motor"
+          consumptionFactor 70
+        }
+        PositionSensor {
+          name "left wheel sensor"
+        }
+      ]
+      endPoint Solid {
+        rotation 0 1 0 0
+        children [
+          DEF WHEEL Transform {
+            rotation 0.577883556445323 0.5770834407562329 -0.5770834407562329 -2.09
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 1 0 0
+                  roughness 1
+                  metalness 0
+                }
+                geometry Cylinder {
+                  height 0.01
+                  radius 0.025
+                }
+              }
+            ]
+          }
+        ]
+        name "left wheel"
+      }
+    }
+    DistanceSensor {
+      translation 0.042 0.02 0.063
+      rotation 0 0 -1 -0.499
+      children [
+        DEF SENSOR Transform {
+          rotation 0.577656895078166 0.5771968951617173 -0.5771968951617173 -2.0939396938995745
+          children [
+            Transform {
+              translation -0.427 -0.04 0.32
+              rotation 0 -1 0 -1.4399003061004252
+              children [
+                Shape {
+                  appearance PBRAppearance {
+                    baseColor 1 1 0
+                    roughness 1
+                    metalness 0
+                  }
+                  geometry Cylinder {
+                    height 0.005
+                    radius 0.011
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+      name "ds0"
+    }
+    DistanceSensor {
+      translation 0.042 0.02 0.063
+      rotation 0 0 -1 -0.499
+      children [
+        DEF SENSOR Transform {
+          rotation 0.577656895078166 0.5771968951617173 -0.5771968951617173 -2.0939396938995745
+          children [
+            Transform {
+              translation -0.439 -0.04 0.28
+              rotation 0 -1 0 -2.094399693899575
+              children [
+                Shape {
+                  appearance PBRAppearance {
+                    baseColor 1 1 0
+                    roughness 1
+                    metalness 0
+                  }
+                  geometry Cylinder {
+                    height 0.005
+                    radius 0.011
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+      name "ds1"
+      lookupTable [
+        0 1024 0
+        0.05 1000 0
+      ]
+      numberOfRays 2
+    }
+    DEF SMILE Transform {
+      translation -0.009 -0.51 0.07
+      rotation 0.579467706107239 -0.6061762357187306 -0.5447637550614802 2.1582843867199895
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.333333 1 0
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.04
+            radius 0.009
+            subdivision 3
+          }
+        }
+      ]
+    }
+    Altimeter {
+      translation 0 0.045 0.025
+      rotation -0.6029009032936056 0.6029009032936056 0.5225141161877915 0
+      children [
+        Transform {
+          translation 0 -0.6 0.08
+          rotation 0.18899131864202418 0.2857593068096901 0.9394806544307308 -1.309
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.207843 0.552941 1
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.08
+                radius 0.05
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+  contactMaterial "body"
+}
